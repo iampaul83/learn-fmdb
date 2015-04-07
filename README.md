@@ -59,7 +59,11 @@ while ( [queryResult next] ) {
 2. ` [queryResult next] -> NO `：沒資料了 -> **結束while**
 3. 在queryResult目前指向的row收資料
 4. **↻ 1**
+
 ###### Close db
+```Objective-C
+[db close];
+```
 
 ## 練習
 1. 建立db
