@@ -2,14 +2,17 @@
 - PART 1 - Hello fmdb
 - PART 2 - Coming soon...
 
+***
 ## 安裝
 1. <a href="https://github.com/ccgus/fmdb" target="_blank">下載FMDB</a>
 2. 將`fmdb/src/fmdb`資料夾拖進專案
 3. 連結sqlite3.dylib <a href="https://raw.githubusercontent.com/iampaul83/learn-fmdb/master/imgs-for-md/img1.png" target="_blank">圖解</a>
 4. `#import "FMDatabase.h"`
 
+***
 ## Hello fmdb
 #### ViewController.m
+***
 ##### 初始化FMDatabase物件
 ```Objective-C
 // 若該路徑檔案不存在將會自動建立新檔
@@ -64,7 +67,7 @@ while ( [queryResult next] ) {
 ```Objective-C
 [db close];
 ```
-
+***
 ## 練習
 1. 建立db
 2. 建立table
