@@ -112,10 +112,13 @@ FMDatabase *db = [FMDatabase <span class="pl-c1">databaseWithPath:</span><span c
 <code>[queryResult next] -&gt; NO</code>：沒資料了 -&gt; <strong>結束while</strong>
 </li>
 <li>在queryResult目前指向的row收資料</li>
-<li>
-<strong>↻ 1</strong>
-###### Close db</li>
+<li><strong>↻ 1</strong></li>
 </ol>
+
+<h6>
+<a id="close-db" class="anchor" href="#close-db" aria-hidden="true"><span class="octicon octicon-link"></span></a>Close db</h6>
+
+<div class="highlight highlight-Objective-C"><pre>[db <span class="pl-c1">close</span>];</pre></div>
 
 <h2>
 <a id="練習" class="anchor" href="#%E7%B7%B4%E7%BF%92" aria-hidden="true"><span class="octicon octicon-link"></span></a>練習</h2>
@@ -125,8 +128,6 @@ FMDatabase *db = [FMDatabase <span class="pl-c1">databaseWithPath:</span><span c
 <li>建立table</li>
 <li>用TableView實作新增、修改、刪除</li>
 </ol>
-
-<hr>
 
       <footer class="site-footer">
         <span class="site-footer-owner"><a href="https://github.com/iampaul83/learn-fmdb">Learn fmdb</a> is maintained by <a href="https://github.com/iampaul83">iampaul83</a>.</span>
