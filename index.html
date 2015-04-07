@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Learn fmdb by iampaul83</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Learn fmdb</h1>
+      <h2 class="project-tagline">fmdb</h2>
+      <a href="https://github.com/iampaul83/learn-fmdb" class="btn">View on GitHub</a>
+      <a href="https://github.com/iampaul83/learn-fmdb/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/iampaul83/learn-fmdb/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h1>
+<a id="learn-fmdb" class="anchor" href="#learn-fmdb" aria-hidden="true"><span class="octicon octicon-link"></span></a>learn-fmdb</h1>
+
+<ul>
+<li>PART 1 - Hello fmdb</li>
+<li>PART 2 - Coming soon...</li>
+</ul>
+
+<h2>
+<a id="安裝" class="anchor" href="#%E5%AE%89%E8%A3%9D" aria-hidden="true"><span class="octicon octicon-link"></span></a>安裝</h2>
+
+<ol>
+<li><a href="https://github.com/ccgus/fmdb" target="_blank">下載FMDB</a></li>
+<li>將<code>fmdb/src/fmdb</code>資料夾拖進專案</li>
+<li>連結sqlite3.dylib <a href="https://raw.githubusercontent.com/iampaul83/learn-fmdb/master/imgs-for-md/img1.png" target="_blank">圖解</a>
+</li>
+<li><code>#import "FMDatabase.h"</code></li>
+</ol>
+
+<h2>
+<a id="hello-fmdb" class="anchor" href="#hello-fmdb" aria-hidden="true"><span class="octicon octicon-link"></span></a>Hello fmdb</h2>
+
+<h5>
+<a id="viewcontrollerm" class="anchor" href="#viewcontrollerm" aria-hidden="true"><span class="octicon octicon-link"></span></a>ViewController.m</h5>
+
+<h6>
+<a id="初始化fmdatabase物件" class="anchor" href="#%E5%88%9D%E5%A7%8B%E5%8C%96fmdatabase%E7%89%A9%E4%BB%B6" aria-hidden="true"><span class="octicon octicon-link"></span></a>初始化FMDatabase物件</h6>
+
+<div class="highlight highlight-Objective-C"><pre><span class="pl-c">// 若該路徑檔案不存在將會自動建立新檔</span>
+FMDatabase *db = [FMDatabase <span class="pl-c1">databaseWithPath:</span><span class="pl-v">self</span>.dbPath];</pre></div>
+
+<h6>
+<a id="開啟檔案" class="anchor" href="#%E9%96%8B%E5%95%9F%E6%AA%94%E6%A1%88" aria-hidden="true"><span class="octicon octicon-link"></span></a>開啟檔案</h6>
+
+<div class="highlight highlight-Objective-C"><pre><span class="pl-c">// 開始使用db前必須先開啟</span>
+<span class="pl-k">BOOL</span> dbOpenSuccess = [db <span class="pl-c1">open</span>];
+<span class="pl-k">if</span> ( !dbOpenSuccess ) {
+  <span class="pl-c1">NSLog</span>(<span class="pl-s"><span class="pl-pds">@"</span>無法開啟db<span class="pl-pds">"</span></span>);
+  <span class="pl-k">return</span>;
+}</pre></div>
+
+<h6>
+<a id="create-table" class="anchor" href="#create-table" aria-hidden="true"><span class="octicon octicon-link"></span></a>Create Table</h6>
+
+<div class="highlight highlight-Objective-C"><pre>[db <span class="pl-c1">executeUpdate:</span><span class="pl-s"><span class="pl-pds">@"</span>create table hello (col1 text, col2 integer)<span class="pl-pds">"</span></span>];</pre></div>
+
+<h6>
+<a id="insert-into" class="anchor" href="#insert-into" aria-hidden="true"><span class="octicon octicon-link"></span></a>Insert into</h6>
+
+<div class="highlight highlight-Objective-C"><pre><span class="pl-c">// 數字型態的欄位以NSNumber物件傳入</span>
+[db <span class="pl-c1">executeUpdate:</span><span class="pl-s"><span class="pl-pds">@"</span>insert into hello (col1, col2) values (?, ?)<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">@"</span>hihi<span class="pl-pds">"</span></span>, @<span class="pl-c1">123</span>];</pre></div>
+
+<h6>
+<a id="query" class="anchor" href="#query" aria-hidden="true"><span class="octicon octicon-link"></span></a>Query</h6>
+
+<div class="highlight highlight-Objective-C"><pre>FMResultSet *queryResult = [db <span class="pl-c1">executeQuery:</span><span class="pl-s"><span class="pl-pds">@"</span>select * from hello<span class="pl-pds">"</span></span>];</pre></div>
+
+<h6>
+<a id="fetch-result" class="anchor" href="#fetch-result" aria-hidden="true"><span class="octicon octicon-link"></span></a>Fetch result</h6>
+
+<ul>
+<li>一些可以取得資料的方法</li>
+<li>請愛用Subscript(<code>queryResult[@"col1"]</code>) -&gt;
+
+<ul>
+<li><a href="http://ccgus.github.io/fmdb/html/Classes/FMResultSet.html#//api/name/objectAtIndexedSubscript:" target="_blank">FMResultSet.objectAtIndexedSubscript:</a></li>
+<li><a href="http://ccgus.github.io/fmdb/html/Classes/FMResultSet.html#//api/name/objectForKeyedSubscript:" target="_blank">FMResultSet.objectForKeyedSubscript:</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="highlight highlight-Objective-C"><pre><span class="pl-k">while</span> ( [queryResult <span class="pl-c1">next</span>] ) {
+  <span class="pl-c1">NSString</span> *col1 = [queryResult <span class="pl-c1">stringForColumn:</span><span class="pl-s"><span class="pl-pds">@"</span>col1<span class="pl-pds">"</span></span>];
+            col1 = [queryResult <span class="pl-c1">objectForColumnName:</span><span class="pl-s"><span class="pl-pds">@"</span>col1<span class="pl-pds">"</span></span>];
+            col1 = queryResult[<span class="pl-s"><span class="pl-pds">@"</span>col1<span class="pl-pds">"</span></span>];
+
+  <span class="pl-k">int</span> col2_int = [queryResult <span class="pl-c1">intForColumn:</span><span class="pl-s"><span class="pl-pds">@"</span>col2<span class="pl-pds">"</span></span>];
+  <span class="pl-c1">NSNumber</span> *col2_NSNumber = [queryResult <span class="pl-c1">objectForColumnName:</span><span class="pl-s"><span class="pl-pds">@"</span>col2<span class="pl-pds">"</span></span>];
+            col2_NSNumber = queryResult[<span class="pl-s"><span class="pl-pds">@"</span>col2<span class="pl-pds">"</span></span>];
+}</pre></div>
+
+<h6>
+<a id="關於上面的while與queryresult-next" class="anchor" href="#%E9%97%9C%E6%96%BC%E4%B8%8A%E9%9D%A2%E7%9A%84while%E8%88%87queryresult-next" aria-hidden="true"><span class="octicon octicon-link"></span></a>關於上面的<code>while</code>與<code>[queryResult next]</code>
+</h6>
+
+<ol>
+<li>
+<code>[queryResult next] -&gt; YES</code>：還有資料 -&gt; <strong>3</strong>
+</li>
+<li>
+<code>[queryResult next] -&gt; NO</code>：沒資料了 -&gt; <strong>結束while</strong>
+</li>
+<li>在queryResult目前指向的row收資料</li>
+<li>
+<strong>↻ 1</strong>
+###### Close db</li>
+</ol>
+
+<h2>
+<a id="練習" class="anchor" href="#%E7%B7%B4%E7%BF%92" aria-hidden="true"><span class="octicon octicon-link"></span></a>練習</h2>
+
+<ol>
+<li>建立db</li>
+<li>建立table</li>
+<li>用TableView實作新增、修改、刪除</li>
+</ol>
+
+<hr>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/iampaul83/learn-fmdb">Learn fmdb</a> is maintained by <a href="https://github.com/iampaul83">iampaul83</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
+
