@@ -83,11 +83,9 @@
 			children = (
 				A037F76C1AD4535D0071B688 /* AppDelegate.h */,
 				A037F76D1AD4535D0071B688 /* AppDelegate.m */,
+				A037F7721AD4535D0071B688 /* Main.storyboard */,
 				A037F76F1AD4535D0071B688 /* ViewController.h */,
 				A037F7701AD4535D0071B688 /* ViewController.m */,
-				A037F7721AD4535D0071B688 /* Main.storyboard */,
-				A037F7751AD4535D0071B688 /* Images.xcassets */,
-				A037F7771AD4535D0071B688 /* LaunchScreen.xib */,
 				A037F7681AD4535D0071B688 /* Supporting Files */,
 			);
 			path = "learn-fmdb";
@@ -96,6 +94,8 @@
 		A037F7681AD4535D0071B688 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				A037F7771AD4535D0071B688 /* LaunchScreen.xib */,
+				A037F7751AD4535D0071B688 /* Images.xcassets */,
 				A037F7691AD4535D0071B688 /* Info.plist */,
 				A037F76A1AD4535D0071B688 /* main.m */,
 			);
