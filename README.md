@@ -1,8 +1,11 @@
 # learn-fmdb
+- PART 1 - Hello fmdb
+- PART 2 - Coming soon...
+
 ## 安裝
-1. [下載FMDB](https://github.com/ccgus/fmdb)
+1. <a href="https://github.com/ccgus/fmdb" target="_blank">下載FMDB</a>
 2. 將`fmdb/src/fmdb`資料夾拖進專案
-3. 連結sqlite3.dylib[(圖解)](https://raw.githubusercontent.com/iampaul83/learn-fmdb/master/imgs-for-md/img1.png)
+3. 連結sqlite3.dylib <a href="https://raw.githubusercontent.com/iampaul83/learn-fmdb/master/imgs-for-md/img1.png" target="_blank">圖解</a>
 4. `#import "FMDatabase.h"`
 
 ## Hello fmdb
@@ -37,8 +40,9 @@ FMResultSet *queryResult = [db executeQuery:@"select * from hello"];
 ###### Fetch result
 * 一些可以取得資料的方法
 * 請愛用Subscript(`queryResult[@"col1"]`) ->
-  * [FMResultSet.objectAtIndexedSubscript:](http://ccgus.github.io/fmdb/html/Classes/FMResultSet.html#//api/name/objectAtIndexedSubscript:)
-  * [FMResultSet.objectForKeyedSubscript:](http://ccgus.github.io/fmdb/html/Classes/FMResultSet.html#//api/name/objectForKeyedSubscript:)
+  * <a href="http://ccgus.github.io/fmdb/html/Classes/FMResultSet.html#//api/name/objectAtIndexedSubscript:" target="_blank">FMResultSet.objectAtIndexedSubscript:</a>
+  * <a href="http://ccgus.github.io/fmdb/html/Classes/FMResultSet.html#//api/name/objectForKeyedSubscript:" target="_blank">FMResultSet.objectForKeyedSubscript:</a>
+
 ```Objective-C
 while ( [queryResult next] ) {
   NSString *col1 = [queryResult stringForColumn:@"col1"];
@@ -55,3 +59,9 @@ while ( [queryResult next] ) {
 2. ` [queryResult next] -> NO `：沒資料了 -> **結束while**
 3. 在queryResult目前指向的row收資料
 4. **↻ 1**
+###### Close db
+
+## 練習
+1. 建立db
+2. 建立table
+3. 用TableView實作新增、修改、刪除
