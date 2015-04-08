@@ -12,7 +12,7 @@
 @interface ViewController ()
 @property (strong, nonatomic) FMDatabase *db;
 /// db路徑位於Document下，檔名為`db.db`
-@property (readonly, nonatomic) NSString *dbPath;
+@property (readonly) NSString *dbPath;
 @end
 
 @implementation ViewController
